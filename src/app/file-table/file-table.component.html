@@ -1,0 +1,11 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+          <button [routerLink]="['/export']" [disabled]="floodRiskNotSet()" mat-stroked-button > Submit </button>
+
+    <app-load-table></app-load-table>
+    <mat-card *ngIf="!dataExists()">
+      <mat-card-content>
+          <h3>No file has been uploaded, return to upload.</h3>
+          <a [routerLink]="['/upload']">Upload File</a><br>
+        </mat-card-content>
+    </mat-card>
+  </div>

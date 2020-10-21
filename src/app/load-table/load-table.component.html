@@ -1,0 +1,70 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <mat-card-content fxLayoutAlign="center center" *ngIf="dataExists()">
+      <!-- display the toggle button if there is a flood risk column to toggle
+        the toggle values correspond to the enum FloodRiskStatus.YES and FloodRiskStatus.NO respectively -->
+      <mat-card  *ngIf="floodRiskAvailable()">
+       <mat-button-toggle-group (change)="toggleFloodRisk()" [(ngModel)]="floodRiskOption" name="floodValue" aria-label="Flood Risk" group="matButtonToggleGroup">
+            <mat-button-toggle  [value]="2"> Set Flood Risk </mat-button-toggle>
+            <mat-button-toggle  [value]="3"> Unset Flood Risk </mat-button-toggle>
+        </mat-button-toggle-group>
+      </mat-card>
+      <!--
+        <mat-card *ngIf="floodRiskSet()">
+          <button [routerLink]="['/export']" mat-stroked-button > Submit </button>
+        </mat-card>
+      -->
+    <!--Loan No	Borrower Name	DOB	Prop Address	Cost-->
+    <mat-table [dataSource]="dataSource">
+
+            <!-- Loan No Column -->
+            <ng-container matColumnDef="Loan No">
+              <th mat-header-cell *matHeaderCellDef> Loan No </th>
+              <td mat-cell *matCellDef="let element"> {{element.loanNumber}} </td>
+            </ng-container>
+  
+            <!-- Borrower Name Column -->
+            <ng-container matColumnDef="Borrower Name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.borrowerName}} </td>
+            </ng-container>
+  
+            <!-- DOB Column -->
+            <ng-container matColumnDef="DOB">
+              <th mat-header-cell *matHeaderCellDef> DOB </th>
+              <td mat-cell *matCellDef="let element"> {{formatDate(element.dob)}} </td>
+            </ng-container>
+  
+            <!-- Prop Address Column -->
+            <ng-container matColumnDef="Prop Address">
+              <th mat-header-cell *matHeaderCellDef> Prop Address </th>
+              <td mat-cell *matCellDef="let element"> {{element.propertyAddress}} </td>
+            </ng-container>
+            
+            <!-- Cost Column -->
+            <ng-container matColumnDef="Cost">
+              <th mat-header-cell *matHeaderCellDef> Cost </th>
+              <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+            </ng-container>
+
+            <!-- Flood Risk Column -->
+            <ng-container matColumnDef="Flood Risk">
+                <th mat-header-cell *matHeaderCellDef> Flood Risk </th>
+                <td mat-cell *matCellDef="let element"> {{element.floodRisk}} </td>
+              </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </mat-table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+
+          </mat-card-content>
+          <!--
+          <mat-card *ngIf="!dataExists()">
+            <mat-card-content>
+                <h3>No file has been uploaded, return to upload.</h3>
+                <a [routerLink]="['/upload']">Upload File</a><br>
+              </mat-card-content>
+          </mat-card>
+        -->
+</div>

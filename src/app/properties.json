@@ -1,0 +1,11 @@
+{
+    "springbootBackend": {
+        "protocol":"http://",
+        "hostname": {
+            "host":"localhost",
+            "port":":8080"
+        },
+        "getPath":"/get/loanList",
+        "addPath":"/add/loanList"
+    }
+}

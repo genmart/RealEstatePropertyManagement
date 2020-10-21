@@ -1,0 +1,17 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <mat-card-content *ngIf="floodRiskSet()">
+        <form class="example-form">
+            <button mat-stroked-button (click)="export()"> Export Data </button>
+        </form>
+
+        <mat-card>
+            <mat-label [style.color]="statusColor">{{this.status}}:</mat-label>
+            <br>
+            {{this.message}}
+        </mat-card>
+    </mat-card-content>
+    <mat-card *ngIf="!floodRiskSet()">
+        <h3>Flood Risk has not been set, return to table.</h3>
+        <a [routerLink]="['/filetable']">Data Table</a><br>
+    </mat-card>
+</div>

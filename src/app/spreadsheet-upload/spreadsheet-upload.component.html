@@ -1,0 +1,26 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Upload Excel or CSV</mat-card-title>
+      </mat-card-header>
+  
+      <form [formGroup]="form" class="example-form">
+
+        <mat-card-content>
+  
+          <mat-form-field>
+            <mat-label>Upload file</mat-label>
+            <ngx-mat-file-input id="excel-file" formControlName="file" [accept]="accept" placeholder="Excel File" valuePlaceholder="No file selected" (change)="readUploadFile()" required>
+              <mat-icon ngxMatFileInputIcon> attach_file </mat-icon>
+            </ngx-mat-file-input>
+          </mat-form-field>
+  
+        </mat-card-content>
+      </form>
+      
+      <mat-card *ngIf="dataExists()">
+        <button [routerLink]="['/filetable']" mat-stroked-button> Submit </button>
+      </mat-card>
+    </mat-card>
+  </div>
+  
